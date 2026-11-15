@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selected Web Programming projects by Chingun.">
+  <meta name="color-scheme" content="light dark">
+  <title>Projects — CHINGUN</title>
+
+  <script src="script.js" defer></script>
+
+  <style>
+    :root {
+      --navy: #101c35;
+      --navy-light: #1a2b4d;
+      --blue: #3675f5;
+      --orange: #ffad33;
+      --white: #f8fafc;
+      --muted: #a6b2c7;
+      --line: rgba(255,255,255,0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--navy);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1150px, 88%);
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navigation {
+      min-height: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: var(--orange);
+    }
+
+    .theme-toggle {
+      padding: 10px 15px;
+      color: white;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .theme-toggle:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    /* Intro */
+
+    .projects-intro {
+      padding: 100px 0 75px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .projects-intro::after {
+      content: "03";
+      position: absolute;
+      right: 0;
+      top: 45px;
+      font-size: 230px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(54, 117, 245, 0.08);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow-line {
+      width: 35px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .projects-intro h1 {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(65px, 10vw, 115px);
+      line-height: 0.9;
+      letter-spacing: -7px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .projects-intro h1 span {
+      color: var(--blue);
+    }
+
+    .intro-description {
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.9;
+      font-size: 15px;
+      margin-top: 30px;
+    }
+
+    .intro-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+      margin-top: 55px;
+    }
+
+    .intro-bottom span {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .intro-bottom strong {
+      color: var(--orange);
+      font-size: 13px;
+    }
+
+    /* Project list */
+
+    .project-list {
+      padding: 25px 0 100px;
+    }
+
+    .list-heading {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .list-heading span:first-child {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .list-heading span:last-child {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 75px 1fr 190px;
+      align-items: stretch;
+      background: var(--navy-light);
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+      transition: 0.25s;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+    }
+
+    .project-number {
+      display: flex;
+      justify-content: center;
+      padding-top: 35px;
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: bold;
+      border-right: 1px solid var(--line);
+    }
+
+    .project-content {
+      padding: 35px 40px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .project-meta span {
+      color: var(--blue);
+      font-size: 9px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .project-meta span + span {
+      color: var(--muted);
+    }
+
+    .project-content h2 {
+      margin: 0 0 13px;
+      font-size: 29px;
+      letter-spacing: -1px;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 0 25px;
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(255,173,51,0.5);
+      padding-bottom: 6px;
+      transition: 0.2s;
+    }
+
+    .project-link:hover {
+      color: white;
+      border-color: white;
+    }
+
+    .project-visual {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: #203d70;
+    }
+
+    .project-visual::before {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+    }
+
+    .project-visual strong {
+      position: relative;
+      z-index: 1;
+      font-size: 48px;
+      color: white;
+      letter-spacing: -3px;
+    }
+
+    .project-visual span {
+      position: relative;
+      z-index: 1;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-top: 5px;
+    }
+
+    .visual-two {
+      background: #254d82;
+    }
+
+    .visual-three {
+      background: #283653;
+    }
+
+    .visual-three strong {
+      color: var(--orange);
+    }
+
+    /* Bottom link */
+
+    .back-section {
+      border-top: 1px solid var(--line);
+      padding: 35px 0 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .back-link {
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      color: white;
+    }
+
+    .back-section span {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 35px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-name {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .footer-name span {
+      color: var(--orange);
+    }
+
+    .footer-note,
+    .copyright {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .footer-content a {
+      color: var(--orange);
+      font-size: 13px;
+    }
+
+    /* Light mode */
+
+    body.light-mode {
+      --navy: #f4f6fb;
+      --navy-light: #ffffff;
+      --white: #17233c;
+      --muted: #68758c;
+      --line: rgba(23,46,85,0.18);
+    }
+
+    body.light-mode .logo,
+    body.light-mode .projects-intro h1,
+    body.light-mode .project-content h2 {
+      color: #172e55;
+    }
+
+    body.light-mode .nav-links a {
+      color: #68758c;
+    }
+
+    body.light-mode .nav-links a:hover,
+    body.light-mode .nav-links a[aria-current="page"] {
+      color: #2563eb;
+    }
+
+    body.light-mode .theme-toggle {
+      color: #172e55;
+      border-color: #cbd5e1;
+    }
+
+    body.light-mode .project-visual strong {
+      color: white;
+    }
+
+    body.light-mode .project-visual span {
+      color: #ffad33;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 800px) {
+      .project-card {
+        grid-template-columns: 55px 1fr;
+      }
+
+      .project-visual {
+        grid-column: 2;
+        min-height: 130px;
+      }
+
+      .projects-intro::after {
+        font-size: 160px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .navigation {
+        padding: 18px 0;
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .projects-intro {
+        padding: 70px 0 45px;
+      }
+
+      .projects-intro h1 {
+        letter-spacing: -4px;
+      }
+
+      .intro-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .project-card {
+        grid-template-columns: 42px 1fr;
+      }
+
+      .project-number {
+        padding-top: 25px;
+        font-size: 12px;
+      }
+
+      .project-content {
+        padding: 25px 20px;
+      }
+
+      .project-content h2 {
+        font-size: 23px;
+      }
+
+      .project-visual {
+        min-height: 110px;
+      }
+
+      .project-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .back-section {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navigation container" aria-label="Main navigation">
+      <a class="logo" href="index.html">CHINGUN<span>.</span></a>
+
+      <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+      </div>
+
+      <button class="theme-toggle" id="theme-toggle" type="button"
+        aria-label="Switch to light mode" aria-pressed="false">
+        <span id="theme-icon" aria-hidden="true">☀</span>
+        <span id="theme-label">Light mode</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Page introduction -->
+    <section class="projects-intro">
+
+      <p class="eyebrow">
+        <span class="eyebrow-line"></span>
+        WEB PROGRAMMING / COURSEWORK
+      </p>
+
+      <h1>MY<br><span>PROJECTS.</span></h1>
+
+      <p class="intro-description">
+        A collection of websites and assignments created during
+        my Web Programming studies. Each project represents
+        a new opportunity to learn, experiment, and improve.
+      </p>
+
+      <div class="intro-bottom">
+        <span>PORTFOLIO / SELECTED WORK</span>
+        <strong>03 PROJECTS ↘</strong>
+      </div>
+
+    </section>
+
+    <!-- Project cards -->
+    <section class="project-list" aria-label="Portfolio projects">
+
+      <div class="list-heading">
+        <span>01 — 03</span>
+        <span>PROJECT ARCHIVE</span>
+      </div>
+
+      <!-- Project 1 -->
+      <article class="project-card">
+
+        <div class="project-number">01</div>
+
+        <div class="project-content">
+
+          <div class="project-meta">
+            <span>INDIVIDUAL COURSEWORK</span>
+            <span>WEB PROGRAMMING</span>
+          </div>
+
+          <h2>Book Search</h2>
+
+          <p>
+            A book search website developed as part of my
+            Web Programming coursework.
+          </p>
+
+          <div class="project-actions">
+            <a class="project-link"
+               href="https://erdenetsogt-delgerbat.github.io/Web-Programming/week%207/book-search.html"
+               target="_blank"
+               rel="noopener noreferrer">
+              EXPLORE PROJECT ↗
+            </a>
+          </div>
+
+        </div>
+
+        <div class="project-visual" aria-hidden="true">
+          <strong>01</strong>
+          <span>BOOKS</span>
+        </div>
+
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card">
+
+        <div class="project-number">02</div>
+
+        <div class="project-content">
+
+          <div class="project-meta">
+            <span>INDIVIDUAL COURSEWORK</span>
+            <span>WEB PROGRAMMING</span>
+          </div>
+
+          <h2>Student Registration</h2>
+
+          <p>
+            A student registration page created using the
+            web programming concepts covered in class.
+          </p>
+
+          <div class="project-actions">
+            <a class="project-link"
+               href="https://erdenetsogt-delgerbat.github.io/Web-Programming/week%208/student-registration.html"
+               target="_blank"
+               rel="noopener noreferrer">
+              EXPLORE PROJECT ↗
+            </a>
+          </div>
+
+        </div>
+
+        <div class="project-visual visual-two" aria-hidden="true">
+          <strong>02</strong>
+          <span>REGISTER</span>
+        </div>
+
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project-card">
+
+        <div class="project-number">03</div>
+
+        <div class="project-content">
+
+          <div class="project-meta">
+            <span>TEAM PROJECT</span>
+            <span>COLLABORATIVE WORK</span>
+          </div>
+
+          <h2>What's Cooking?</h2>
+
+          <p>
+            A collaborative recipe website developed with classmates,
+            focused on everyday cooking and making recipes more accessible.
+          </p>
+
+          <div class="project-actions">
+            <a class="project-link"
+               href="https://erdenetsogt-delgerbat.github.io/team-Project/"
+               target="_blank"
+               rel="noopener noreferrer">
+              VISIT WEBSITE ↗
+            </a>
+
+            <a class="project-link"
+               href="https://github.com/ERDENETSOGT-DELGERBAT/team-Project"
+               target="_blank"
+               rel="noopener noreferrer">
+              GITHUB REPOSITORY ↗
+            </a>
+          </div>
+
+        </div>
+
+        <div class="project-visual visual-three" aria-hidden="true">
+          <strong>03</strong>
+          <span>TEAMWORK</span>
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- Return link -->
+    <section class="back-section">
+      <a class="back-link" href="index.html">← BACK TO HOMEPAGE</a>
+      <span>THANK YOU FOR VISITING</span>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content container">
+
+      <div>
+        <div class="footer-name">CHINGUN<span>.</span></div>
+        <div class="footer-note">
+          Computer Engineering / Gachon University
+        </div>
+      </div>
+
+      <a href="https://github.com/ERDENETSOGT-DELGERBAT"
+         target="_blank"
+         rel="noopener noreferrer">
+        GITHUB PROFILE ↗
+      </a>
+
+      <span class="copyright">
+        © <span id="current-year">2026</span> CHINGUN
+      </span>
+
+    </div>
+  </footer>
+
+</body>
+</html>
