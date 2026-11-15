@@ -4,26 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Selected Web Programming projects by Chingun.">
-  <meta name="color-scheme" content="light dark">
-  <title>Projects — CHINGUN</title>
+  <meta name="description" content="Chingun's selected web development projects.">
+  <title>Selected Works — Chingun</title>
 
   <script src="script.js" defer></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #f4f3ed;
-      --surface: #ffffff;
-      --text: #171916;
-      --muted: #777a70;
-      --line: #dcded3;
-      --accent: #c4f044;
-      --dark: #171916;
-      --soft: #e9eadf;
+      --paper: #eeeae0;
+      --ink: #171717;
+      --red: #f04435;
+      --blue: #293fda;
+      --grey: #85847e;
+      --line: #c9c5bb;
+      --white: #fffdf7;
     }
 
     * {
@@ -33,23 +31,9 @@
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--paper);
+      color: var(--ink);
       font-family: 'DM Sans', sans-serif;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    body.dark-mode {
-      --bg: #171916;
-      --surface: #22251f;
-      --text: #f4f3ed;
-      --muted: #a4a69b;
-      --line: #383b33;
-      --soft: #292c25;
-    }
-
-    h1, h2, h3, .logo, .footer-name {
-      font-family: 'Space Grotesk', sans-serif;
     }
 
     a {
@@ -61,583 +45,603 @@
       font-family: inherit;
     }
 
-    .container {
-      width: min(1160px, 88%);
+    .site {
+      width: min(1440px, 100%);
       margin: auto;
+      overflow: hidden;
     }
 
-    /* Navigation */
+    /* Top navigation */
 
-    header {
+    .topbar {
+      min-height: 75px;
+      padding: 0 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 1px solid var(--line);
-      position: relative;
-      z-index: 10;
+    }
+
+    .brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 23px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+    }
+
+    .brand span {
+      color: var(--red);
     }
 
     .navigation {
-      min-height: 82px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 30px;
+      gap: 32px;
     }
 
-    .logo {
-      font-size: 25px;
-      font-weight: 700;
-      letter-spacing: -1.5px;
+    .navigation a {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color .2s;
     }
 
-    .logo span,
-    .footer-name span {
-      color: #8bbd19;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 34px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a[aria-current="page"] {
-      color: var(--text);
-    }
-
-    .nav-links a[aria-current="page"]::after {
-      content: "";
-      display: block;
-      height: 3px;
-      background: var(--accent);
-      margin-top: 5px;
+    .navigation a:hover,
+    .navigation a[aria-current="page"] {
+      color: var(--red);
     }
 
     .theme-toggle {
-      padding: 11px 17px;
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--line);
-      border-radius: 4px;
+      background: var(--ink);
+      color: var(--white);
+      border: 0;
+      padding: 10px 15px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      transition: 0.2s;
     }
 
-    .theme-toggle:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #171916;
-    }
+    /* Hero */
 
-    /* Intro */
-
-    .projects-intro {
-      padding: 105px 0 65px;
+    .hero {
+      background: var(--ink);
+      color: var(--white);
+      padding: 75px 8% 65px;
       position: relative;
-      border-bottom: 1px solid var(--line);
-      overflow: hidden;
     }
 
-    .intro-topline {
+    .hero-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 45px;
+      margin-bottom: 75px;
     }
 
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2.5px;
+    .hero-label,
+    .hero-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: #aaa9a2;
+      text-transform: uppercase;
     }
 
-    .eyebrow-dot {
-      width: 9px;
-      height: 9px;
-      background: var(--accent);
-      border-radius: 50%;
+    .hero-label span {
+      color: var(--red);
     }
 
-    .intro-index {
-      color: var(--muted);
-      font-size: 11px;
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(65px, 11vw, 150px);
       font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .projects-intro h1 {
-      max-width: 950px;
-      font-size: clamp(70px, 12vw, 145px);
-      line-height: 0.82;
-      letter-spacing: -10px;
+      letter-spacing: -9px;
+      line-height: .82;
       text-transform: uppercase;
       margin: 0;
-      font-weight: 700;
     }
 
-    .projects-intro h1 span {
-      display: inline-block;
-      color: transparent;
-      -webkit-text-stroke: 2px var(--text);
+    .hero h1 .red {
+      color: var(--red);
     }
 
-    .intro-bottom {
+    .hero-bottom {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 30px;
       margin-top: 65px;
+      gap: 30px;
     }
 
-    .intro-description {
-      max-width: 430px;
-      color: var(--muted);
-      font-size: 15px;
+    .hero-bottom p {
+      max-width: 390px;
+      color: #b3b2ac;
       line-height: 1.9;
+      font-size: 13px;
       margin: 0;
     }
 
-    .project-count {
-      background: var(--accent);
-      color: #171916;
-      padding: 18px 23px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
+    .hero-mark {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+      letter-spacing: 2px;
       white-space: nowrap;
-      transform: rotate(-3deg);
     }
 
-    /* Project section */
+    /* Project introduction strip */
 
-    .project-list {
-      padding: 75px 0 100px;
-    }
-
-    .section-heading {
+    .project-index {
+      padding: 28px 8%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 35px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .section-heading h2 {
-      margin: 0;
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .section-heading span {
-      color: var(--muted);
+    .project-index strong {
+      font-family: 'Space Mono', monospace;
       font-size: 11px;
-      font-weight: 700;
+      text-transform: uppercase;
       letter-spacing: 1.5px;
     }
 
-    /* Project cards */
+    .project-index span {
+      font-family: 'Space Mono', monospace;
+      color: var(--grey);
+      font-size: 10px;
+    }
 
-    .project-card {
+    /* Project showcase */
+
+    .showcase {
+      padding: 75px 8% 100px;
+    }
+
+    .feature-project {
       display: grid;
-      grid-template-columns: 1fr 300px;
-      min-height: 285px;
-      margin-bottom: 25px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      transition: transform 0.3s, border-color 0.3s;
-      overflow: hidden;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--text);
-    }
-
-    .project-content {
-      padding: 38px 42px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .project-meta {
-      display: flex;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 55px;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 110px;
     }
 
-    .project-number {
-      color: #719c17;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .meta-divider {
-      width: 25px;
-      height: 1px;
-      background: var(--line);
-    }
-
-    .project-category {
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.8px;
-    }
-
-    .project-content h3 {
-      margin: 0 0 13px;
-      font-size: clamp(25px, 3vw, 35px);
-      letter-spacing: -1.5px;
-    }
-
-    .project-content p {
-      max-width: 520px;
-      margin: 0 0 28px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-    }
-
-    .project-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 13px;
-      padding: 12px 17px;
-      background: var(--dark);
-      color: #f4f3ed;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      transition: 0.2s;
-    }
-
-    .project-link:hover {
-      background: var(--accent);
-      color: #171916;
-      transform: translateY(-3px);
-    }
-
-    /* Graphic panels */
-
-    .project-art {
-      min-height: 285px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .feature-art {
+      min-height: 420px;
+      background: var(--blue);
       position: relative;
       overflow: hidden;
-      background: var(--accent);
-      color: #171916;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .project-art::before {
-      content: "";
-      position: absolute;
-      width: 230px;
-      height: 230px;
-      border: 1px solid rgba(23,25,22,0.25);
-      border-radius: 50%;
-      transition: transform 0.5s;
-    }
-
-    .project-art::after {
-      content: "";
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      border: 1px solid rgba(23,25,22,0.25);
-      border-radius: 50%;
-      transition: transform 0.5s;
-    }
-
-    .project-card:hover .project-art::before {
-      transform: scale(1.2) rotate(25deg);
-    }
-
-    .project-card:hover .project-art::after {
-      transform: scale(0.8) rotate(-25deg);
-    }
-
-    .art-number {
+    .book-shape {
+      width: 185px;
+      height: 255px;
+      background: var(--white);
+      transform: rotate(-12deg);
+      box-shadow: 20px 25px 0 rgba(0,0,0,.2);
       position: relative;
-      z-index: 1;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 110px;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: -10px;
-    }
-
-    .art-label {
-      position: absolute;
       z-index: 2;
-      bottom: 25px;
-      right: 25px;
+      padding: 25px 20px;
+      color: var(--ink);
+    }
+
+    .book-shape::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--red);
+    }
+
+    .book-shape small {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+      margin-left: 10px;
+    }
+
+    .book-shape strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 35px;
+      line-height: .9;
+      letter-spacing: -3px;
+      margin: 40px 0 10px 10px;
+    }
+
+    .book-shape span {
+      display: block;
+      margin-left: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+    }
+
+    .art-circle {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 50%;
+    }
+
+    .art-circle::after {
+      content: "";
+      position: absolute;
+      inset: 35px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 50%;
+    }
+
+    .feature-info {
+      padding: 10px 0;
+    }
+
+    .project-kicker {
+      color: var(--red);
+      font-family: 'Space Mono', monospace;
       font-size: 10px;
-      font-weight: 800;
       letter-spacing: 2px;
-    }
-
-    .art-two {
-      background: #dedfd2;
-    }
-
-    .art-two .art-number {
-      transform: rotate(-8deg);
-    }
-
-    .art-three {
-      background: #171916;
-      color: var(--accent);
-    }
-
-    .art-three::before,
-    .art-three::after {
-      border-color: rgba(196,240,68,0.35);
-    }
-
-    /* Extra strip */
-
-    .closing-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin: 35px 0 90px;
-      background: var(--accent);
-      color: #171916;
-    }
-
-    .closing-text {
-      padding: 40px;
-    }
-
-    .closing-text h2 {
-      margin: 0 0 12px;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 0.95;
-      letter-spacing: -2px;
       text-transform: uppercase;
     }
 
-    .closing-text p {
-      max-width: 350px;
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .closing-symbol {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #171916;
-      color: var(--accent);
+    .feature-info h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(75px, 12vw, 145px);
-      font-weight: 700;
-      letter-spacing: -10px;
+      font-size: clamp(40px, 5vw, 65px);
+      line-height: .95;
+      letter-spacing: -4px;
+      margin: 23px 0;
     }
 
-    /* Back section */
+    .feature-info p {
+      color: #66655f;
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 390px;
+    }
 
-    .back-section {
+    .project-details {
+      display: flex;
+      gap: 35px;
+      margin: 35px 0;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail small {
+      display: block;
+      color: var(--grey);
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .detail strong {
+      font-size: 12px;
+    }
+
+    .visit-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: var(--red);
+      color: white;
+      padding: 16px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .visit-link:hover {
+      background: var(--ink);
+      transform: translateY(-3px);
+    }
+
+    /* Other projects */
+
+    .other-heading {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      padding: 30px 0 55px;
       border-top: 1px solid var(--line);
+      padding: 25px 0;
+      margin-bottom: 35px;
     }
 
-    .back-link {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      transition: 0.2s;
+    .other-heading h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 25px;
+      letter-spacing: -1px;
+      margin: 0;
     }
 
-    .back-link:hover {
-      color: #719c17;
-      transform: translateX(-5px);
+    .other-heading span {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--grey);
     }
 
-    .back-section span {
-      color: var(--muted);
+    .other-projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .other-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .other-art {
+      height: 260px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .registration-art {
+      background: #e3c5b4;
+    }
+
+    .registration-paper {
+      width: 185px;
+      background: #fffdf7;
+      padding: 23px;
+      box-shadow: 15px 15px 0 rgba(0,0,0,.13);
+      transform: rotate(5deg);
+    }
+
+    .registration-paper .line {
+      height: 5px;
+      background: #d9d5cb;
+      margin: 12px 0;
+    }
+
+    .registration-paper .line.short {
+      width: 55%;
+    }
+
+    .registration-paper .form-button {
+      width: 65px;
+      height: 18px;
+      background: var(--blue);
+      margin-top: 20px;
+    }
+
+    .registration-paper small {
+      font-family: 'Space Mono', monospace;
+      font-size: 8px;
+    }
+
+    .cooking-art {
+      background: #d6d9c6;
+    }
+
+    .plate {
+      width: 180px;
+      height: 180px;
+      background: #fffdf7;
+      border: 12px solid #f5f0e4;
+      border-radius: 50%;
+      box-shadow: 12px 15px 0 rgba(0,0,0,.12);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 75px;
+      transform: rotate(-12deg);
+    }
+
+    .other-info {
+      padding: 27px;
+    }
+
+    .other-info .project-kicker {
+      font-size: 9px;
+    }
+
+    .other-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 29px;
+      letter-spacing: -1px;
+      margin: 13px 0;
+    }
+
+    .other-info p {
+      color: #74736c;
+      font-size: 13px;
+      line-height: 1.8;
+      min-height: 70px;
+    }
+
+    .other-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .other-links a {
+      font-family: 'Space Mono', monospace;
+      color: var(--blue);
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 2px;
+      border-bottom: 1px solid var(--blue);
+      padding-bottom: 5px;
+    }
+
+    .other-links a:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    /* Final section */
+
+    .end-section {
+      background: var(--red);
+      color: white;
+      padding: 65px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .end-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(35px, 6vw, 70px);
+      letter-spacing: -4px;
+      line-height: .9;
+      margin: 0;
+    }
+
+    .end-section a {
+      border: 1px solid white;
+      padding: 17px 22px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    .end-section a:hover {
+      background: white;
+      color: var(--red);
     }
 
     /* Footer */
 
     footer {
-      background: var(--dark);
-      color: #f4f3ed;
-      padding: 38px 0;
+      background: var(--ink);
+      color: white;
+      padding: 28px 8%;
     }
 
-    .footer-content {
+    .footer-inner {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      align-items: center;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
-    .footer-name {
-      font-size: 23px;
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
-
-    .footer-note,
-    .copyright {
-      color: #a4a69b;
-      font-size: 11px;
-      margin-top: 6px;
-    }
-
-    .footer-content > a {
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 800;
+    .footer-inner p {
+      color: #aaa9a2;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
       letter-spacing: 1px;
-      transition: 0.2s;
+      margin: 0;
     }
 
-    .footer-content > a:hover {
-      color: white;
+    .footer-inner a {
+      color: var(--red);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
     }
 
     /* Responsive */
 
-    @media (max-width: 800px) {
-      .project-card {
-        grid-template-columns: 1fr 220px;
+    @media (max-width: 850px) {
+      .feature-project {
+        grid-template-columns: 1fr;
+        gap: 35px;
       }
 
-      .project-content {
-        padding: 30px;
+      .feature-art {
+        min-height: 350px;
       }
 
-      .project-art {
-        min-height: 260px;
-      }
-
-      .projects-intro h1 {
-        letter-spacing: -6px;
+      .feature-info {
+        padding: 0;
       }
     }
 
     @media (max-width: 600px) {
-      .container {
-        width: 90%;
+      .topbar {
+        padding: 18px 5%;
+        flex-wrap: wrap;
+        gap: 18px;
       }
 
       .navigation {
-        padding: 18px 0;
-        flex-wrap: wrap;
-      }
-
-      .nav-links {
         order: 3;
         width: 100%;
         justify-content: space-between;
-        gap: 10px;
+        gap: 12px;
       }
 
-      .projects-intro {
-        padding: 70px 0 45px;
+      .navigation a {
+        font-size: 9px;
       }
 
-      .intro-topline {
-        margin-bottom: 35px;
+      .hero {
+        padding: 55px 7% 45px;
       }
 
-      .projects-intro h1 {
-        font-size: clamp(62px, 15vw, 90px);
+      .hero-top {
+        margin-bottom: 55px;
+      }
+
+      .hero h1 {
+        font-size: 18vw;
         letter-spacing: -5px;
       }
 
-      .intro-bottom {
+      .hero-bottom {
         flex-direction: column;
         align-items: flex-start;
-        margin-top: 40px;
+        margin-top: 45px;
       }
 
-      .project-list {
-        padding: 55px 0 65px;
+      .project-index {
+        padding: 22px 7%;
       }
 
-      .project-card {
+      .showcase {
+        padding: 50px 7% 70px;
+      }
+
+      .feature-art {
+        min-height: 290px;
+      }
+
+      .book-shape {
+        transform: scale(.85) rotate(-12deg);
+      }
+
+      .project-details {
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .other-projects {
         grid-template-columns: 1fr;
       }
 
-      .project-content {
-        padding: 30px 25px;
+      .other-art {
+        height: 230px;
       }
 
-      .project-art {
-        min-height: 190px;
-        grid-row: 1;
-      }
-
-      .art-number {
-        font-size: 90px;
-      }
-
-      .project-actions {
+      .end-section {
+        padding: 45px 7%;
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .project-link {
-        width: 100%;
-        justify-content: space-between;
+      .end-section h2 {
+        font-size: 48px;
       }
 
-      .closing-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .closing-text {
-        padding: 30px;
-      }
-
-      .closing-symbol {
-        min-height: 160px;
-      }
-
-      .back-section {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-content {
-        align-items: flex-start;
-        flex-direction: column;
+      footer {
+        padding: 25px 7%;
       }
     }
   </style>
@@ -645,245 +649,241 @@
 
 <body>
 
-  <header>
-    <nav class="navigation container" aria-label="Main navigation">
+<div class="site">
 
-      <a class="logo" href="index.html">CHINGUN<span>.</span></a>
+  <!-- Navigation -->
 
-      <div class="nav-links">
-        <a href="index.html#about">About</a>
-        <a href="index.html#skills">Skills</a>
-        <a href="projects.html" aria-current="page">Projects</a>
-      </div>
+  <header class="topbar">
 
-      <button class="theme-toggle" id="theme-toggle" type="button"
-        aria-label="Switch theme" aria-pressed="false">
-        <span id="theme-icon" aria-hidden="true">☾</span>
-        <span id="theme-label">Theme</span>
-      </button>
+    <a href="index.html" class="brand">CHINGUN<span>®</span></a>
 
+    <nav class="navigation" aria-label="Main navigation">
+      <a href="index.html#about">About</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="projects.html" aria-current="page">Selected work</a>
     </nav>
+
+    <button class="theme-toggle" id="theme-toggle" type="button"
+      aria-label="Switch theme" aria-pressed="false">
+      <span id="theme-icon">◐</span>
+      <span id="theme-label">Theme</span>
+    </button>
+
   </header>
 
-  <main class="container">
+  <main>
 
-    <!-- Introduction -->
+    <!-- Hero -->
 
-    <section class="projects-intro">
+    <section class="hero">
 
-      <div class="intro-topline">
-        <p class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          SELECTED WORK / 2026
-        </p>
-
-        <span class="intro-index">PORTFOLIO — 002</span>
+      <div class="hero-top">
+        <div class="hero-label"><span>●</span> INDEPENDENT WORK / STUDENT PORTFOLIO</div>
+        <div class="hero-date">GACHON UNIVERSITY / 2026</div>
       </div>
 
       <h1>
-        THE<br>
-        <span>WORK.</span>
+        SELECTED<br>
+        <span class="red">WORKS.</span>
       </h1>
 
-      <div class="intro-bottom">
-
-        <p class="intro-description">
-          A selection of websites and assignments developed during
-          my Web Programming studies. From individual experiments
-          to collaborative projects, each one is part of my journey
-          as a developer.
+      <div class="hero-bottom">
+        <p>
+          A collection of digital experiments, coursework,
+          and collaborative ideas. Built through curiosity,
+          practice, and a constant desire to learn.
         </p>
 
-        <div class="project-count">
-          03 PROJECTS ↗
-        </div>
-
+        <div class="hero-mark">THREE PROJECTS / ONE JOURNEY ↘</div>
       </div>
 
     </section>
 
-    <!-- Project archive -->
+    <!-- Index -->
 
-    <section class="project-list" aria-label="Portfolio projects">
+    <div class="project-index">
+      <strong>01 / PROJECT COLLECTION</strong>
+      <span>SCROLL TO EXPLORE ↓</span>
+    </div>
 
-      <div class="section-heading">
-        <h2>Selected projects</h2>
-        <span>2026 / 01—03</span>
-      </div>
+    <!-- Projects -->
 
-      <!-- Project 1 -->
+    <section class="showcase">
 
-      <article class="project-card">
+      <!-- Featured project -->
 
-        <div class="project-content">
+      <article class="feature-project">
 
-          <div class="project-meta">
-            <span class="project-number">01</span>
-            <span class="meta-divider"></span>
-            <span class="project-category">INDIVIDUAL COURSEWORK</span>
+        <div class="feature-art" aria-label="Book-inspired project artwork">
+          <div class="art-circle"></div>
+
+          <div class="book-shape">
+            <small>THE DIGITAL LIBRARY</small>
+            <strong>BOOK<br>FINDER.</strong>
+            <span>SEARCH / DISCOVER / READ</span>
           </div>
+        </div>
 
-          <h3>Book Search</h3>
+        <div class="feature-info">
+
+          <span class="project-kicker">FEATURED PROJECT / 001</span>
+
+          <h2>Book<br>Search.</h2>
 
           <p>
             A book search website developed as part of my
-            Web Programming coursework.
+            Web Programming coursework. An individual project
+            exploring how users can discover books through a
+            simple web interface.
           </p>
 
-          <div class="project-actions">
-            <a class="project-link"
-              href="https://aidy40.github.io/Web-Programming/week%207/book-search.html"
-              target="_blank"
-              rel="noopener noreferrer">
-              EXPLORE PROJECT <span>↗</span>
-            </a>
+          <div class="project-details">
+            <div class="detail">
+              <small>TYPE</small>
+              <strong>Individual</strong>
+            </div>
+
+            <div class="detail">
+              <small>FIELD</small>
+              <strong>Web Programming</strong>
+            </div>
+
+            <div class="detail">
+              <small>NUMBER</small>
+              <strong>001 / 003</strong>
+            </div>
           </div>
 
-        </div>
+          <a class="visit-link"
+            href="https://aidy40.github.io/Web-Programming/week%207/book-search.html"
+            target="_blank"
+            rel="noopener noreferrer">
+            OPEN PROJECT ↗
+          </a>
 
-        <div class="project-art" aria-hidden="true">
-          <span class="art-number">01</span>
-          <span class="art-label">BOOK SEARCH</span>
         </div>
 
       </article>
 
-      <!-- Project 2 -->
+      <!-- Other projects -->
 
-      <article class="project-card">
+      <div class="other-heading">
+        <h2>More experiments.</h2>
+        <span>PROJECTS / 002—003</span>
+      </div>
 
-        <div class="project-content">
+      <div class="other-projects">
 
-          <div class="project-meta">
-            <span class="project-number">02</span>
-            <span class="meta-divider"></span>
-            <span class="project-category">INDIVIDUAL COURSEWORK</span>
-          </div>
+        <!-- Student Registration -->
 
-          <h3>Student Registration</h3>
+        <article class="other-card">
 
-          <p>
-            A student registration page created using the
-            web programming concepts covered in class.
-          </p>
+          <div class="other-art registration-art">
 
-          <div class="project-actions">
-            <a class="project-link"
-              href="https://aidy40.github.io/Web-Programming/week%208/student-registration.html"
-              target="_blank"
-              rel="noopener noreferrer">
-              EXPLORE PROJECT <span>↗</span>
-            </a>
-          </div>
-
-        </div>
-
-        <div class="project-art art-two" aria-hidden="true">
-          <span class="art-number">02</span>
-          <span class="art-label">REGISTRATION</span>
-        </div>
-
-      </article>
-
-      <!-- Project 3 -->
-
-      <article class="project-card">
-
-        <div class="project-content">
-
-          <div class="project-meta">
-            <span class="project-number">03</span>
-            <span class="meta-divider"></span>
-            <span class="project-category">TEAM PROJECT</span>
-          </div>
-
-          <h3>What's Cooking?</h3>
-
-          <p>
-            A collaborative recipe website developed with classmates,
-            focused on everyday cooking and making recipes more accessible.
-          </p>
-
-          <div class="project-actions">
-
-            <a class="project-link"
-              href="https://aidy40.github.io/team-Project/"
-              target="_blank"
-              rel="noopener noreferrer">
-              VISIT WEBSITE <span>↗</span>
-            </a>
-
-            <a class="project-link"
-              href="https://github.com/aidy40/team-Project"
-              target="_blank"
-              rel="noopener noreferrer">
-              GITHUB REPOSITORY <span>↗</span>
-            </a>
+            <div class="registration-paper">
+              <small>STUDENT FORM / 2026</small>
+              <div class="line"></div>
+              <div class="line short"></div>
+              <div class="line"></div>
+              <div class="line short"></div>
+              <div class="form-button"></div>
+            </div>
 
           </div>
 
-        </div>
+          <div class="other-info">
 
-        <div class="project-art art-three" aria-hidden="true">
-          <span class="art-number">03</span>
-          <span class="art-label">TEAMWORK</span>
-        </div>
+            <span class="project-kicker">PROJECT 002 / COURSEWORK</span>
 
-      </article>
+            <h3>Student Registration</h3>
+
+            <p>
+              A student registration page created using the
+              web programming concepts covered in class.
+            </p>
+
+            <div class="other-links">
+              <a href="https://aidy40.github.io/Web-Programming/week%208/student-registration.html"
+                target="_blank"
+                rel="noopener noreferrer">
+                VIEW WEBSITE ↗
+              </a>
+            </div>
+
+          </div>
+
+        </article>
+
+        <!-- What's Cooking -->
+
+        <article class="other-card">
+
+          <div class="other-art cooking-art">
+            <div class="plate">🍳</div>
+          </div>
+
+          <div class="other-info">
+
+            <span class="project-kicker">PROJECT 003 / TEAMWORK</span>
+
+            <h3>What's Cooking?</h3>
+
+            <p>
+              A collaborative recipe website developed with classmates,
+              focused on everyday cooking and making recipes more accessible.
+            </p>
+
+            <div class="other-links">
+
+              <a href="https://aidy40.github.io/team-Project/"
+                target="_blank"
+                rel="noopener noreferrer">
+                VISIT WEBSITE ↗
+              </a>
+
+              <a href="https://github.com/aidy40/team-Project"
+                target="_blank"
+                rel="noopener noreferrer">
+                SOURCE CODE ↗
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
 
     </section>
 
-    <!-- Closing statement -->
+    <!-- Ending -->
 
-    <section class="closing-strip">
+    <section class="end-section">
 
-      <div class="closing-text">
-        <h2>Always<br>building.</h2>
-        <p>
-          Every project is another step toward becoming
-          a better developer. More experiments coming soon.
-        </p>
-      </div>
+      <h2>MORE IDEAS.<br>MORE TO BUILD.</h2>
 
-      <div class="closing-symbol" aria-hidden="true">
-        C<span>.</span>
-      </div>
+      <a href="index.html">RETURN TO HOMEPAGE ↗</a>
 
-    </section>
-
-    <!-- Back link -->
-
-    <section class="back-section">
-      <a class="back-link" href="index.html">← BACK TO HOMEPAGE</a>
-      <span>THANK YOU FOR VISITING</span>
     </section>
 
   </main>
 
-  <!-- Footer -->
-
   <footer>
-    <div class="footer-content container">
 
-      <div>
-        <div class="footer-name">CHINGUN<span>.</span></div>
-        <div class="footer-note">
-          Computer Engineering / Gachon University
-        </div>
-      </div>
+    <div class="footer-inner">
+      <p>© 2026 CHINGUN / COMPUTER ENGINEERING</p>
 
       <a href="https://github.com/aidy40"
         target="_blank"
         rel="noopener noreferrer">
         GITHUB PROFILE ↗
       </a>
-
-      <span class="copyright">
-        © <span id="current-year">2026</span> CHINGUN
-      </span>
-
     </div>
+
   </footer>
+
+</div>
 
 </body>
 </html>
