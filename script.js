@@ -1,51 +1,99 @@
-const themeToggle = document.getElementById("theme-toggle");
-const themeLabel = document.getElementById("theme-label");
-const themeIcon = document.getElementById("theme-icon");
 
-function applyTheme(theme, save = true) {
-  const isDark = theme === "dark";
+(() => {
+  "use strict";
 
-  document.body.classList.toggle("dark-mode", isDark);
+  // Portfolio settings
+  const SETTINGS = {
+    themeKey: "portfolio-theme",
+    darkClass: "dark-mode"
+  };
 
-  themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
-  themeIcon.textContent = isDark ? "☀" : "◐";
+  // Page elements
+  const elements = {
+    body: document.body,
+    themeButton: document.querySelector("#theme-toggle"),
+    themeText: document.querySelector("#theme-label"),
+    themeSymbol: document.querySelector("#theme-icon"),
+    year: document.querySelector("#current-year")
+  };
 
-  themeToggle.setAttribute("aria-pressed", String(isDark));
-  themeToggle.setAttribute(
-    "aria-label",
-    isDark ? "Switch to light mode" : "Switch to dark mode"
-  );
-
-  if (save) {
+  // Get the preferred theme
+  function getPreferredTheme() {
     try {
-      localStorage.setItem("portfolio-theme", theme);
+      const storedTheme = localStorage.getItem(SETTINGS.themeKey);
+
+      if (storedTheme === "light" || storedTheme === "dark") {
+        return storedTheme;
+      }
     } catch (error) {
-      console.warn("Theme preference could not be saved.");
+      console.info("Using the system theme instead.");
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  // Update the page theme
+  function changeTheme(theme, remember = true) {
+    const darkMode = theme === "dark";
+
+    elements.body.classList.toggle(SETTINGS.darkClass, darkMode);
+
+    if (elements.themeText) {
+      elements.themeText.textContent = darkMode
+        ? "Light mode"
+        : "Dark mode";
+    }
+
+    if (elements.themeSymbol) {
+      elements.themeSymbol.textContent = darkMode ? "☀" : "◐";
+    }
+
+    if (elements.themeButton) {
+      elements.themeButton.setAttribute("aria-pressed", String(darkMode));
+      elements.themeButton.setAttribute(
+        "aria-label",
+        darkMode ? "Switch to light mode" : "Switch to dark mode"
+      );
+    }
+
+    if (remember) {
+      try {
+        localStorage.setItem(SETTINGS.themeKey, theme);
+      } catch (error) {
+        console.info("Theme preference could not be saved.");
+      }
     }
   }
-}
 
-let savedTheme = null;
+  // Set up the theme button
+  function initializeTheme() {
+    changeTheme(getPreferredTheme(), false);
 
-try {
-  savedTheme = localStorage.getItem("portfolio-theme");
-} catch (error) {
-  savedTheme = null;
-}
+    if (!elements.themeButton) return;
 
-const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-  ? "dark"
-  : "light";
+    elements.themeButton.addEventListener("click", () => {
+      const currentlyDark = elements.body.classList.contains(
+        SETTINGS.darkClass
+      );
 
-applyTheme(savedTheme || systemTheme, false);
+      changeTheme(currentlyDark ? "light" : "dark");
+    });
+  }
 
-themeToggle.addEventListener("click", function () {
-  const isDark = document.body.classList.contains("dark-mode");
-  applyTheme(isDark ? "light" : "dark");
-});
+  // Display the current year in the footer
+  function initializeFooter() {
+    if (elements.year) {
+      elements.year.textContent = String(new Date().getFullYear());
+    }
+  }
 
-const yearElement = document.getElementById("current-year");
+  // Start the portfolio
+  function initializePortfolio() {
+    initializeTheme();
+    initializeFooter();
+  }
 
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
-}
+  document.addEventListener("DOMContentLoaded", initializePortfolio);
+})();
