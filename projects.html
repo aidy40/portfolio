@@ -10,15 +10,20 @@
 
   <script src="script.js" defer></script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --navy: #101c35;
       --navy-light: #1a2b4d;
-      --blue: #3675f5;
-      --orange: #ffad33;
+      --blue: #477cf5;
+      --orange: #ffb84d;
       --white: #f8fafc;
       --muted: #a6b2c7;
       --line: rgba(255,255,255,0.14);
+      --card-radius: 18px;
     }
 
     * {
@@ -30,7 +35,12 @@
       margin: 0;
       background: var(--navy);
       color: var(--white);
-      font-family: Arial, sans-serif;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3, .logo, .footer-name {
+      font-family: 'Space Grotesk', sans-serif;
     }
 
     a {
@@ -47,6 +57,8 @@
 
     header {
       border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 10;
     }
 
     .navigation {
@@ -59,22 +71,25 @@
 
     .logo {
       font-size: 25px;
-      font-weight: 900;
-      letter-spacing: -1px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
     }
 
-    .logo span {
+    .logo span,
+    .footer-name span {
       color: var(--orange);
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 35px;
     }
 
     .nav-links a {
       color: var(--muted);
       font-size: 13px;
+      font-weight: 600;
       transition: 0.2s;
     }
 
@@ -84,23 +99,28 @@
     }
 
     .theme-toggle {
-      padding: 10px 15px;
-      color: white;
+      padding: 11px 17px;
+      color: var(--white);
       background: transparent;
       border: 1px solid var(--line);
       border-radius: 30px;
       cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      transition: 0.2s;
     }
 
     .theme-toggle:hover {
       color: var(--orange);
       border-color: var(--orange);
+      transform: translateY(-2px);
     }
 
     /* Intro */
 
     .projects-intro {
-      padding: 100px 0 75px;
+      padding: 105px 0 75px;
       position: relative;
       overflow: hidden;
     }
@@ -109,11 +129,12 @@
       content: "03";
       position: absolute;
       right: 0;
-      top: 45px;
-      font-size: 230px;
+      top: 35px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 240px;
       line-height: 1;
-      font-weight: 900;
-      color: rgba(54, 117, 245, 0.08);
+      font-weight: 700;
+      color: rgba(71,124,245,0.08);
       pointer-events: none;
     }
 
@@ -123,7 +144,7 @@
       gap: 12px;
       color: var(--orange);
       font-size: 11px;
-      font-weight: bold;
+      font-weight: 800;
       letter-spacing: 3px;
       margin-bottom: 25px;
     }
@@ -139,9 +160,10 @@
       z-index: 1;
       font-size: clamp(65px, 10vw, 115px);
       line-height: 0.9;
-      letter-spacing: -7px;
+      letter-spacing: -8px;
       text-transform: uppercase;
       margin: 0;
+      font-weight: 700;
     }
 
     .projects-intro h1 span {
@@ -150,7 +172,7 @@
 
     .intro-description {
       color: var(--muted);
-      max-width: 480px;
+      max-width: 490px;
       line-height: 1.9;
       font-size: 15px;
       margin-top: 30px;
@@ -162,19 +184,21 @@
       align-items: center;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding: 22px 0;
+      padding: 24px 0;
       margin-top: 55px;
     }
 
     .intro-bottom span {
       color: var(--muted);
       font-size: 11px;
+      font-weight: 600;
       letter-spacing: 2px;
     }
 
     .intro-bottom strong {
       color: var(--orange);
       font-size: 13px;
+      font-weight: 700;
     }
 
     /* Project list */
@@ -193,13 +217,14 @@
     .list-heading span:first-child {
       color: var(--orange);
       font-size: 12px;
-      font-weight: bold;
+      font-weight: 800;
     }
 
     .list-heading span:last-child {
       color: var(--muted);
       font-size: 11px;
       letter-spacing: 3px;
+      font-weight: 600;
     }
 
     .project-card {
@@ -208,28 +233,30 @@
       align-items: stretch;
       background: var(--navy-light);
       border: 1px solid var(--line);
-      margin-bottom: 18px;
-      transition: 0.25s;
+      border-radius: var(--card-radius);
+      margin-bottom: 20px;
+      transition: 0.25s ease;
       overflow: hidden;
     }
 
     .project-card:hover {
       border-color: var(--orange);
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.16);
     }
 
     .project-number {
       display: flex;
       justify-content: center;
-      padding-top: 35px;
+      padding-top: 38px;
       color: var(--orange);
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 800;
       border-right: 1px solid var(--line);
     }
 
     .project-content {
-      padding: 35px 40px;
+      padding: 38px 40px;
     }
 
     .project-meta {
@@ -243,7 +270,7 @@
       color: var(--blue);
       font-size: 9px;
       letter-spacing: 2px;
-      font-weight: bold;
+      font-weight: 800;
     }
 
     .project-meta span + span {
@@ -254,12 +281,13 @@
       margin: 0 0 13px;
       font-size: 29px;
       letter-spacing: -1px;
+      font-weight: 700;
     }
 
     .project-content p {
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.9;
       max-width: 560px;
       margin: 0 0 25px;
     }
@@ -276,16 +304,19 @@
       gap: 10px;
       color: var(--orange);
       font-size: 12px;
-      font-weight: bold;
-      border-bottom: 1px solid rgba(255,173,51,0.5);
+      font-weight: 800;
+      border-bottom: 1px solid rgba(255,184,77,0.5);
       padding-bottom: 6px;
       transition: 0.2s;
     }
 
     .project-link:hover {
-      color: white;
-      border-color: white;
+      color: var(--white);
+      border-color: var(--white);
+      gap: 15px;
     }
+
+    /* Project graphics */
 
     .project-visual {
       min-height: 220px;
@@ -301,25 +332,36 @@
     .project-visual::before {
       content: "";
       position: absolute;
-      width: 160px;
-      height: 160px;
+      width: 165px;
+      height: 165px;
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 50%;
+      transition: 0.4s;
     }
 
     .project-visual::after {
       content: "";
       position: absolute;
-      width: 110px;
-      height: 110px;
+      width: 115px;
+      height: 115px;
       border: 1px solid rgba(255,255,255,0.3);
       border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    .project-card:hover .project-visual::before {
+      transform: scale(1.15);
+    }
+
+    .project-card:hover .project-visual::after {
+      transform: scale(1.2);
     }
 
     .project-visual strong {
       position: relative;
       z-index: 1;
-      font-size: 48px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 52px;
       color: white;
       letter-spacing: -3px;
     }
@@ -329,7 +371,7 @@
       z-index: 1;
       color: var(--orange);
       font-size: 10px;
-      font-weight: bold;
+      font-weight: 800;
       letter-spacing: 3px;
       margin-top: 5px;
     }
@@ -360,17 +402,20 @@
     .back-link {
       color: var(--orange);
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 800;
+      transition: 0.2s;
     }
 
     .back-link:hover {
-      color: white;
+      color: var(--white);
+      transform: translateX(-4px);
     }
 
     .back-section span {
       color: var(--muted);
       font-size: 10px;
       letter-spacing: 2px;
+      font-weight: 600;
     }
 
     /* Footer */
@@ -390,11 +435,8 @@
 
     .footer-name {
       font-size: 20px;
-      font-weight: 900;
-    }
-
-    .footer-name span {
-      color: var(--orange);
+      font-weight: 700;
+      letter-spacing: -1px;
     }
 
     .footer-note,
@@ -407,16 +449,22 @@
     .footer-content a {
       color: var(--orange);
       font-size: 13px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .footer-content a:hover {
+      color: var(--white);
     }
 
     /* Light mode */
 
     body.light-mode {
-      --navy: #f4f6fb;
+      --navy: #f3f5fa;
       --navy-light: #ffffff;
       --white: #17233c;
       --muted: #68758c;
-      --line: rgba(23,46,85,0.18);
+      --line: rgba(23,46,85,0.15);
     }
 
     body.light-mode .logo,
@@ -439,12 +487,25 @@
       border-color: #cbd5e1;
     }
 
+    body.light-mode .project-card {
+      box-shadow: 0 5px 20px rgba(23,46,85,0.04);
+    }
+
+    body.light-mode .project-card:hover {
+      box-shadow: 0 12px 30px rgba(23,46,85,0.1);
+    }
+
     body.light-mode .project-visual strong {
       color: white;
     }
 
     body.light-mode .project-visual span {
-      color: #ffad33;
+      color: #ffb84d;
+    }
+
+    body.light-mode .back-link:hover,
+    body.light-mode .footer-content a:hover {
+      color: #2563eb;
     }
 
     /* Responsive */
@@ -456,7 +517,7 @@
 
       .project-visual {
         grid-column: 2;
-        min-height: 130px;
+        min-height: 150px;
       }
 
       .projects-intro::after {
@@ -501,7 +562,7 @@
       }
 
       .project-content {
-        padding: 25px 20px;
+        padding: 27px 20px;
       }
 
       .project-content h2 {
@@ -509,7 +570,7 @@
       }
 
       .project-visual {
-        min-height: 110px;
+        min-height: 120px;
       }
 
       .project-actions {
@@ -605,7 +666,7 @@
 
           <div class="project-actions">
             <a class="project-link"
-               href="https://erdenetsogt-delgerbat.github.io/Web-Programming/week%207/book-search.html"
+               href="https://aidy40.github.io/Web-Programming/week%207/book-search.html"
                target="_blank"
                rel="noopener noreferrer">
               EXPLORE PROJECT ↗
@@ -642,7 +703,7 @@
 
           <div class="project-actions">
             <a class="project-link"
-               href="https://erdenetsogt-delgerbat.github.io/Web-Programming/week%208/student-registration.html"
+               href="https://aidy40.github.io/Web-Programming/week%208/student-registration.html"
                target="_blank"
                rel="noopener noreferrer">
               EXPLORE PROJECT ↗
@@ -679,14 +740,14 @@
 
           <div class="project-actions">
             <a class="project-link"
-               href="https://erdenetsogt-delgerbat.github.io/team-Project/"
+               href="https://aidy40.github.io/team-Project/"
                target="_blank"
                rel="noopener noreferrer">
               VISIT WEBSITE ↗
             </a>
 
             <a class="project-link"
-               href="https://github.com/ERDENETSOGT-DELGERBAT/team-Project"
+               href="https://github.com/aidy40/team-Project"
                target="_blank"
                rel="noopener noreferrer">
               GITHUB REPOSITORY ↗
@@ -722,7 +783,7 @@
         </div>
       </div>
 
-      <a href="https://github.com/ERDENETSOGT-DELGERBAT"
+      <a href="https://github.com/aidy40"
          target="_blank"
          rel="noopener noreferrer">
         GITHUB PROFILE ↗
